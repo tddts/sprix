@@ -20,7 +20,6 @@ import javafx.scene.control.Dialog;
 
 import javax.annotation.PostConstruct;
 
-import com.github.tddts.sprix.annotations.FxDialogInit;
 import com.github.tddts.sprix.annotations.FxDialog;
 
 /**
@@ -31,9 +30,6 @@ import com.github.tddts.sprix.annotations.FxDialog;
  * To create a Dialog via {@code FxDialogProvider} you should mark corresponding Dialog implementation with
  * {@link FxDialog} annotation and describe path to FXML file with dialog content.
  * FXMl file should have {@code fx:controller} property set to dialog class.
- * <p>
- * To initialize dialog crate a method with required parameters and mark by {@link FxDialogInit} annotation.
- * This initialization method will be invoked every time this dialog is called.
  * <p>
  * Such dialog would also support {@link PostConstruct} annotation as a Spring-processed bean.
  *
@@ -49,14 +45,4 @@ public interface FxDialogProvider {
    * @return dialog of given type.
    */
   <T extends Dialog<?>> T getDialog(Class<T> type);
-
-  /**
-   * Create dialog of given type using given arguments for initialization.
-   *
-   * @param type dialog class
-   * @param <T>  dialog generic type
-   * @param args dialog initialization arguments
-   * @return dialog of given type.
-   */
-  public <T extends Dialog<?>> T getDialog(Class<T> type, Object... args);
 }

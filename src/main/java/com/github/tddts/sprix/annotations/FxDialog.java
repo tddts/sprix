@@ -41,4 +41,9 @@ public @interface FxDialog {
    * Determines if loaded JavaFX nodes will be put under "expandable content" of dialog pane or not.
    */
   boolean expandable() default false;
+
+  /**
+   * Determines if a dialog can be cached an reused.
+   */
+  boolean cached() default false;
 }
