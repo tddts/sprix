@@ -16,15 +16,15 @@
 
 package com.github.tddts.sprix.beans;
 
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+
 /**
  * {@code FxApplicationStarter} is an interface for an object that handles application start.
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public interface FxApplicationStarter {
+public interface FxApplicationStarter extends BeanFactoryAware, ApplicationListener<ContextRefreshedEvent> {
 
-  /**
-   * Start application.
-   */
-  void startApplication(String[] args);
 }

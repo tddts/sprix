@@ -35,7 +35,7 @@ import org.springframework.context.event.ContextRefreshedEvent;
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public abstract class AbstractFxApplicationStarter extends Application implements FxApplicationStarter, BeanFactoryAware, ApplicationListener<ContextRefreshedEvent> {
+public abstract class AbstractFxApplicationStarter extends Application implements FxApplicationStarter {
 
   private final Log logger = LogFactory.getLog(getClass());
 
@@ -45,34 +45,27 @@ public abstract class AbstractFxApplicationStarter extends Application implement
   @Override
   public synchronized void onApplicationEvent(ContextRefreshedEvent event) {
     if (!applicationStarted) {
-      start();
+      launch(getArgs());
       applicationStarted = true;
     }
   }
 
-  private void start() {
+  private String[] getArgs() {
     String[] args = new String[]{};
-
     try {
       CommandLineArgsSource argsSource = beanFactory.getBean(CommandLineArgsSource.class);
       args = argsSource.getRawArguments();
     } catch (BeansException e) {
       if (logger.isWarnEnabled()) {
         logger.warn(e.getMessage());
-        logger.warn("CommandLineArgsSource was not found. Launching JavaFX applicationw with empty arguments.");
+        logger.warn("CommandLineArgsSource was not found. Returning empty arguments.");
       }
     }
-
-    startApplication(args);
+    return args;
   }
 
   @Override
-  public final void startApplication(String[] args) {
-    launch(args);
-  }
-
-  @Override
-  public void start(Stage primaryStage) throws Exception {
+  public void start(Stage primaryStage) {
     setUp(primaryStage);
     FxViewHandler viewHandler = beanFactory.getBean(FxViewHandler.class);
     viewHandler.showView(primaryStage);
@@ -81,10 +74,6 @@ public abstract class AbstractFxApplicationStarter extends Application implement
   @Override
   public final void setBeanFactory(BeanFactory beanFactory) throws BeansException {
     AbstractFxApplicationStarter.beanFactory = beanFactory;
-  }
-
-  public final BeanFactory getBeanFactory() {
-    return beanFactory;
   }
 
   public abstract void setUp(Stage primaryStage);
