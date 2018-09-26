@@ -21,7 +21,7 @@ package com.github.tddts.sprix.exception;
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class FxDialogException extends SpringFxException {
+public class FxDialogException extends SprixException {
 
   public FxDialogException() {
   }

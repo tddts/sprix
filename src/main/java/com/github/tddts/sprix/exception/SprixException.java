@@ -19,24 +19,24 @@ package com.github.tddts.sprix.exception;
 /**
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class SpringFxException extends RuntimeException {
+public class SprixException extends RuntimeException {
 
-  public SpringFxException() {
+  public SprixException() {
   }
 
-  public SpringFxException(String message) {
+  public SprixException(String message) {
     super(message);
   }
 
-  public SpringFxException(String message, Throwable cause) {
+  public SprixException(String message, Throwable cause) {
     super(message, cause);
   }
 
-  public SpringFxException(Throwable cause) {
+  public SprixException(Throwable cause) {
     super(cause);
   }
 
-  public SpringFxException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+  public SprixException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
   }
 }
