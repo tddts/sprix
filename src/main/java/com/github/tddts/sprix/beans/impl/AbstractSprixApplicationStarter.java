@@ -28,7 +28,7 @@ import org.springframework.beans.factory.BeanFactory;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
- * Basic abstract implementation of {@link SprixApplicationStarter} that can be inherited for extension.
+ * Basic abstract implementation of {@link SprixApplicationStarter} that can be inherited for extension.<br>
  * Using static fields as JavaFX creates new instance of {@link Application} on launch using {@link java.lang.reflect.Constructor#newInstance(Object...)}
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com

@@ -22,8 +22,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for marking JavaFX dialog classes.
- * Contains path to corresponding FXML file.
+ * Marking annotations for dynamic JavaFX dialogs.<br>
+ * Contains path to corresponding FXML file.<br>
  * Used to load JavaFX nodes from FXML and create dialog object.
  *
  * @author Tigran_Dadaiants@epam.com

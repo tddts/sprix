@@ -34,7 +34,6 @@ import java.util.List;
  */
 public class SprixBeanHandlerImpl implements SprixBeanHandler, BeanFactoryAware {
 
-  private String controllerPattern = "\\w+Controller";
   private AutowireCapableBeanFactory beanFactory;
 
   public SprixBeanHandlerImpl() {
@@ -63,6 +62,7 @@ public class SprixBeanHandlerImpl implements SprixBeanHandler, BeanFactoryAware 
   private void wireNestedControllers(Object controller) {
     Class<?> type = controller.getClass();
     List<Object> controllers = new ArrayList<>();
+
     // Find injected controller fields
     try {
       for (Field field : type.getDeclaredFields()) {
@@ -74,6 +74,7 @@ public class SprixBeanHandlerImpl implements SprixBeanHandler, BeanFactoryAware 
     } catch (IllegalAccessException e) {
       throw new SprixBeanException(e);
     }
+
     // Wire nested controllers
     for (Object nestedController : controllers) {
       initBean(nestedController);
@@ -85,9 +86,5 @@ public class SprixBeanHandlerImpl implements SprixBeanHandler, BeanFactoryAware 
     Class<?> type = field.getType();
     SprixController controllerAnnotation = type.getAnnotation(SprixController.class);
     return controllerAnnotation != null;
-  }
-
-  public void setControllerPattern(String controllerPattern) {
-    this.controllerPattern = controllerPattern;
   }
 }

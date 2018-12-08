@@ -22,7 +22,8 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
- * Annotation for marking JavaFX controllers.
+ * Marking annotation for JavaFX controllers.<br>
+ * Used to identify controllers on bean processing.
  *
  * @author Tigran_Dadaiants@epam.com
  */
