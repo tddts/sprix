@@ -20,22 +20,22 @@ import javafx.scene.control.Dialog;
 
 import javax.annotation.PostConstruct;
 
-import com.github.tddts.sprix.annotations.FxDialog;
+import com.github.tddts.sprix.annotations.SprixDialog;
 
 /**
- * {@code FxDialogProvider} creates {@link Dialog} objects by processing classes with special annotations.
- * {@code FxDialogProvider} is capable of injecting dialog with FXML nodes similar to JavaFX controllers,
+ * {@code SprixDialogProvider} creates {@link Dialog} objects by processing classes with special annotations.
+ * {@code SprixDialogProvider} is capable of injecting dialog with FXML nodes similar to JavaFX controllers,
  * and also capable processing Dialog as a Spring bean (including injection of dependencies).
  * <p>
- * To create a Dialog via {@code FxDialogProvider} you should mark corresponding Dialog implementation with
- * {@link FxDialog} annotation and describe path to FXML file with dialog content.
+ * To create a Dialog via {@code SprixDialogProvider} you should mark corresponding Dialog implementation with
+ * {@link SprixDialog} annotation and describe path to FXML file with dialog content.
  * FXMl file should have {@code fx:controller} property set to dialog class.
  * <p>
  * Such dialog would also support {@link PostConstruct} annotation as a Spring-processed bean.
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public interface FxDialogProvider {
+public interface SprixDialogProvider {
 
   /**
    * Create dialog of given type.

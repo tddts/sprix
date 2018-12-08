@@ -21,24 +21,24 @@ package com.github.tddts.sprix.exception;
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class FxDialogException extends SprixException {
+public class SprixDialogException extends SprixException {
 
-  public FxDialogException() {
+  public SprixDialogException() {
   }
 
-  public FxDialogException(String message) {
+  public SprixDialogException(String message) {
     super(message);
   }
 
-  public FxDialogException(String message, Throwable cause) {
+  public SprixDialogException(String message, Throwable cause) {
     super(message, cause);
   }
 
-  public FxDialogException(Throwable cause) {
+  public SprixDialogException(Throwable cause) {
     super(cause);
   }
 
-  public FxDialogException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+  public SprixDialogException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
     super(message, cause, enableSuppression, writableStackTrace);
   }
 }

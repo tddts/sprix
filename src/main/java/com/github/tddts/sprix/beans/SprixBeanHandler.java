@@ -14,25 +14,26 @@
  * limitations under the License.
  */
 
-package com.github.tddts.sprix.annotations;
-
-import java.lang.annotation.ElementType;
-import java.lang.annotation.Retention;
-import java.lang.annotation.RetentionPolicy;
-import java.lang.annotation.Target;
+package com.github.tddts.sprix.beans;
 
 /**
- * Annotation for marking JavaFX controllers.
- * Contains path to corresponding FXML file for external usage.
+ * {@code SprixBeanHandler} provides functionality for wiring JavaFX objects to Spring context.
  *
- * @author Tigran_Dadaiants@epam.com
+ * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-@Target(ElementType.TYPE)
-@Retention(RetentionPolicy.RUNTIME)
-public @interface FxController {
+public interface SprixBeanHandler {
 
   /**
-   * FXML file path.
+   * Wire given view's controller to Spring context.
+   *
+   * @param controller FXMl view controller
    */
-  String value();
+  void wireController(Object controller);
+
+  /**
+   * Wire object to Spring context using class simple name as a bean's name.
+   *
+   * @param object object
+   */
+  void initBean(Object object);
 }

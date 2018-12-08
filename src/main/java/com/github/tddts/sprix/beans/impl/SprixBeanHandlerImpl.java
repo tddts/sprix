@@ -16,9 +16,9 @@
 
 package com.github.tddts.sprix.beans.impl;
 
-import com.github.tddts.sprix.beans.FxBeanHandler;
-import com.github.tddts.sprix.exception.FxBeanException;
-import javafx.fxml.FXML;
+import com.github.tddts.sprix.annotations.SprixController;
+import com.github.tddts.sprix.beans.SprixBeanHandler;
+import com.github.tddts.sprix.exception.SprixBeanException;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
 import org.springframework.beans.factory.BeanFactoryAware;
@@ -32,12 +32,12 @@ import java.util.List;
 /**
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class FxBeanHandlerImpl implements FxBeanHandler, BeanFactoryAware {
+public class SprixBeanHandlerImpl implements SprixBeanHandler, BeanFactoryAware {
 
   private String controllerPattern = "\\w+Controller";
   private AutowireCapableBeanFactory beanFactory;
 
-  public FxBeanHandlerImpl() {
+  public SprixBeanHandlerImpl() {
   }
 
   @Override
@@ -66,19 +66,25 @@ public class FxBeanHandlerImpl implements FxBeanHandler, BeanFactoryAware {
     // Find injected controller fields
     try {
       for (Field field : type.getDeclaredFields()) {
-        if (field.isAnnotationPresent(FXML.class) && field.getName().matches(controllerPattern)) {
+        if (isController(field)) {
           field.setAccessible(true);
           controllers.add(field.get(controller));
         }
       }
     } catch (IllegalAccessException e) {
-      throw new FxBeanException(e);
+      throw new SprixBeanException(e);
     }
     // Wire nested controllers
     for (Object nestedController : controllers) {
       initBean(nestedController);
       wireNestedControllers(nestedController);
     }
+  }
+
+  private boolean isController(Field field) {
+    Class<?> type = field.getType();
+    SprixController controllerAnnotation = type.getAnnotation(SprixController.class);
+    return controllerAnnotation != null;
   }
 
   public void setControllerPattern(String controllerPattern) {

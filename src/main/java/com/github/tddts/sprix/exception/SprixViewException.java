@@ -17,28 +17,28 @@
 package com.github.tddts.sprix.exception;
 
 /**
- * Generic bean exception.
+ * Generic view exception.
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class FxBeanException extends SprixException {
+public class SprixViewException extends SprixException {
 
-  public FxBeanException() {
+  public SprixViewException() {
   }
 
-  public FxBeanException(String message) {
-    super(message);
+  public SprixViewException(String s) {
+    super(s);
   }
 
-  public FxBeanException(String message, Throwable cause) {
-    super(message, cause);
+  public SprixViewException(String s, Throwable throwable) {
+    super(s, throwable);
   }
 
-  public FxBeanException(Throwable cause) {
-    super(cause);
+  public SprixViewException(Throwable throwable) {
+    super(throwable);
   }
 
-  public FxBeanException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-    super(message, cause, enableSuppression, writableStackTrace);
+  public SprixViewException(String s, Throwable throwable, boolean b, boolean b1) {
+    super(s, throwable, b, b1);
   }
 }

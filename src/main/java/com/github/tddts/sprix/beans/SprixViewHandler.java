@@ -16,12 +16,15 @@
 
 package com.github.tddts.sprix.beans;
 
+import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
+ * Interface allowing separation of view handling from JavaFX's {@link Application#start(javafx.stage.Stage)}
+ *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public interface FxViewHandler {
+public interface SprixViewHandler {
 
   void showView(Stage stage);
 }

@@ -16,10 +16,10 @@
 
 package com.github.tddts.sprix.beans.impl;
 
-import com.github.tddts.sprix.beans.FxBeanHandler;
-import com.github.tddts.sprix.beans.FxViewHandler;
+import com.github.tddts.sprix.beans.SprixBeanHandler;
+import com.github.tddts.sprix.beans.SprixViewHandler;
 import com.github.tddts.sprix.beans.ResourceBundleProvider;
-import com.github.tddts.sprix.exception.FxViewException;
+import com.github.tddts.sprix.exception.SprixViewException;
 import com.github.tddts.tools.core.util.ResourceUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -30,7 +30,7 @@ import java.io.IOException;
 /**
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class FxViewHandlerImpl implements FxViewHandler {
+public class SprixViewHandlerImpl implements SprixViewHandler {
 
   private String file;
   private String title;
@@ -38,7 +38,7 @@ public class FxViewHandlerImpl implements FxViewHandler {
   private int width = 800;
   private int height = 600;
 
-  private FxBeanHandler beanHandler;
+  private SprixBeanHandler beanHandler;
   private ResourceBundleProvider resourceBundleProvider;
 
   @Override
@@ -49,7 +49,7 @@ public class FxViewHandlerImpl implements FxViewHandler {
     try {
       loader.load();
     } catch (IOException e) {
-      throw new FxViewException(e.getMessage(), e);
+      throw new SprixViewException(e.getMessage(), e);
     }
 
     beanHandler.wireController(loader.getController());
@@ -75,7 +75,7 @@ public class FxViewHandlerImpl implements FxViewHandler {
     this.height = height;
   }
 
-  public void setBeanHandler(FxBeanHandler beanHandler) {
+  public void setBeanHandler(SprixBeanHandler beanHandler) {
     this.beanHandler = beanHandler;
   }
 

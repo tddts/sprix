@@ -17,25 +17,23 @@
 package com.github.tddts.sprix.beans.impl;
 
 import com.github.tddts.sprix.beans.CommandLineArgsSource;
-import com.github.tddts.sprix.beans.FxApplicationStarter;
-import com.github.tddts.sprix.beans.FxViewHandler;
+import com.github.tddts.sprix.beans.SprixApplicationStarter;
+import com.github.tddts.sprix.beans.SprixViewHandler;
 import javafx.application.Application;
 import javafx.stage.Stage;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.BeansException;
 import org.springframework.beans.factory.BeanFactory;
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.ContextRefreshedEvent;
 
 /**
- * Basic abstract implementation of {@link FxApplicationStarter} that can be inherited for extension.
+ * Basic abstract implementation of {@link SprixApplicationStarter} that can be inherited for extension.
  * Using static fields as JavaFX creates new instance of {@link Application} on launch using {@link java.lang.reflect.Constructor#newInstance(Object...)}
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public abstract class AbstractFxApplicationStarter extends Application implements FxApplicationStarter {
+public abstract class AbstractSprixApplicationStarter extends Application implements SprixApplicationStarter {
 
   private final Log logger = LogFactory.getLog(getClass());
 
@@ -67,13 +65,13 @@ public abstract class AbstractFxApplicationStarter extends Application implement
   @Override
   public void start(Stage primaryStage) {
     setUp(primaryStage);
-    FxViewHandler viewHandler = beanFactory.getBean(FxViewHandler.class);
+    SprixViewHandler viewHandler = beanFactory.getBean(SprixViewHandler.class);
     viewHandler.showView(primaryStage);
   }
 
   @Override
   public final void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-    AbstractFxApplicationStarter.beanFactory = beanFactory;
+    AbstractSprixApplicationStarter.beanFactory = beanFactory;
   }
 
   public abstract void setUp(Stage primaryStage);

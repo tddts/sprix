@@ -16,11 +16,11 @@
 
 package com.github.tddts.sprix.beans.impl;
 
-import com.github.tddts.sprix.annotations.FxDialog;
-import com.github.tddts.sprix.beans.FxBeanHandler;
-import com.github.tddts.sprix.beans.FxDialogProvider;
+import com.github.tddts.sprix.annotations.SprixDialog;
+import com.github.tddts.sprix.beans.SprixBeanHandler;
+import com.github.tddts.sprix.beans.SprixDialogProvider;
 import com.github.tddts.sprix.beans.ResourceBundleProvider;
-import com.github.tddts.sprix.exception.FxDialogException;
+import com.github.tddts.sprix.exception.SprixDialogException;
 import com.github.tddts.tools.core.util.ResourceUtil;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -32,11 +32,11 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-public class FxDialogProviderImpl implements FxDialogProvider {
+public class SprixDialogProviderImpl implements SprixDialogProvider {
 
   private Map<Class<?>, Dialog<?>> dialogCache = new HashMap<>();
 
-  private FxBeanHandler beanHandler;
+  private SprixBeanHandler beanHandler;
   private ResourceBundleProvider resourceBundleProvider;
 
   @Override
@@ -48,10 +48,10 @@ public class FxDialogProviderImpl implements FxDialogProvider {
 
   private <T extends Dialog<?>> T createDialog(Class<T> type) {
 
-    if (!type.isAnnotationPresent(FxDialog.class))
-      throw new FxDialogException("Dialog class should have a @FxDialog annotation!");
+    if (!type.isAnnotationPresent(SprixDialog.class))
+      throw new SprixDialogException("Dialog class should have a @SprixDialog annotation!");
 
-    FxDialog dialogAnnotation = type.getDeclaredAnnotation(FxDialog.class);
+    SprixDialog dialogAnnotation = type.getDeclaredAnnotation(SprixDialog.class);
     FXMLLoader loader = loadDialogView(dialogAnnotation);
     T dialog = loader.getController();
     setDialogContent(dialog, loader.getRoot(), dialogAnnotation);
@@ -63,7 +63,7 @@ public class FxDialogProviderImpl implements FxDialogProvider {
     return dialog;
   }
 
-  private void setDialogContent(Dialog<?> dialog, Node root, FxDialog dialogAnnotation) {
+  private void setDialogContent(Dialog<?> dialog, Node root, SprixDialog dialogAnnotation) {
     boolean expandable = dialogAnnotation.expandable();
     DialogPane dialogPane = dialog.getDialogPane();
 
@@ -73,25 +73,25 @@ public class FxDialogProviderImpl implements FxDialogProvider {
       dialogPane.setContent(root);
   }
 
-  private FXMLLoader loadDialogView(FxDialog dialogAnnotation) {
+  private FXMLLoader loadDialogView(SprixDialog dialogAnnotation) {
 
     String filePath = dialogAnnotation.value();
 
     if (filePath.isEmpty())
-      throw new FxDialogException("@FxDialog should contain path to FXML file!");
+      throw new SprixDialogException("@SprixDialog should contain path to FXML file!");
 
     FXMLLoader loader = new FXMLLoader(ResourceUtil.getClasspathResourceURL(filePath), resourceBundleProvider.getResourceBundle());
 
     try {
       loader.load();
     } catch (IOException e) {
-      throw new FxDialogException(e.getMessage(), e);
+      throw new SprixDialogException(e.getMessage(), e);
     }
 
     return loader;
   }
 
-  public void setBeanHandler(FxBeanHandler beanHandler) {
+  public void setBeanHandler(SprixBeanHandler beanHandler) {
     this.beanHandler = beanHandler;
   }
 

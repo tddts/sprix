@@ -14,21 +14,31 @@
  * limitations under the License.
  */
 
-package com.github.tddts.sprix.beans.impl;
-
-import com.github.tddts.sprix.beans.FxApplicationStarter;
-import javafx.stage.Stage;
+package com.github.tddts.sprix.exception;
 
 /**
- * Simple implementation of a {@link FxApplicationStarter}.
- * Sets application exit on close request.
+ * Generic bean exception.
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public class SimpleFxApplicationStarter extends AbstractFxApplicationStarter {
+public class SprixBeanException extends SprixException {
 
-  @Override
-  public void setUp(Stage primaryStage) {
-    primaryStage.setOnCloseRequest((e) -> System.exit(0));
+  public SprixBeanException() {
+  }
+
+  public SprixBeanException(String message) {
+    super(message);
+  }
+
+  public SprixBeanException(String message, Throwable cause) {
+    super(message, cause);
+  }
+
+  public SprixBeanException(Throwable cause) {
+    super(cause);
+  }
+
+  public SprixBeanException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
+    super(message, cause, enableSuppression, writableStackTrace);
   }
 }

@@ -14,17 +14,20 @@
  * limitations under the License.
  */
 
-package com.github.tddts.sprix.beans;
+package com.github.tddts.sprix.annotations;
 
-import org.springframework.beans.factory.BeanFactoryAware;
-import org.springframework.context.ApplicationListener;
-import org.springframework.context.event.ContextRefreshedEvent;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * {@code FxApplicationStarter} is an interface for an object that handles application start.
+ * Annotation for marking JavaFX controllers.
  *
- * @author Tigran_Dadaiants dtkcommon@gmail.com
+ * @author Tigran_Dadaiants@epam.com
  */
-public interface FxApplicationStarter extends BeanFactoryAware, ApplicationListener<ContextRefreshedEvent> {
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface SprixController {
 
 }

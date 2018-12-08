@@ -16,24 +16,15 @@
 
 package com.github.tddts.sprix.beans;
 
+import org.springframework.beans.factory.BeanFactoryAware;
+import org.springframework.context.ApplicationListener;
+import org.springframework.context.event.ContextRefreshedEvent;
+
 /**
- * {@code FxBeanHandler} provides functionality for wiring JavaFX objects to Spring context.
+ * {@code SprixApplicationStarter} is an interface for an object that handles application start.
  *
  * @author Tigran_Dadaiants dtkcommon@gmail.com
  */
-public interface FxBeanHandler {
+public interface SprixApplicationStarter extends BeanFactoryAware, ApplicationListener<ContextRefreshedEvent> {
 
-  /**
-   * Wire given view's controller to Spring context.
-   *
-   * @param controller FXMl view controller
-   */
-  void wireController(Object controller);
-
-  /**
-   * Wire object to Spring context using class simple name as a bean's name.
-   *
-   * @param object object
-   */
-  void initBean(Object object);
 }
