@@ -36,7 +36,7 @@ public class MessageSourceResourceBundleProvider implements ResourceBundleProvid
 
   @Override
   public void afterPropertiesSet() throws Exception {
-    resourceBundle = new MessageSourceResourceBundle(messageSource, locale);
+    if (messageSource != null) resourceBundle = new MessageSourceResourceBundle(messageSource, locale);
   }
 
   @Override
