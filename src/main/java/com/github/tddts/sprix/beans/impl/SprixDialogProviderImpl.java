@@ -71,6 +71,7 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
       dialog = createDialogInstance(type);
     }
 
+    beanHandler.initBean(dialog);
     return dialog;
   }
 
@@ -87,7 +88,6 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
     FXMLLoader loader = loadDialogView(dialogAnnotation);
     dialog = loader.getController();
     setDialogContent(dialog, loader.getRoot(), dialogAnnotation);
-    beanHandler.initBean(dialog);
     return dialog;
   }
 
