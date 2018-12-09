@@ -73,11 +73,6 @@ public class LoadContentAnnotationBeanPostProcessor implements BeanPostProcessor
     return bean;
   }
 
-  @Override
-  public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-    return bean;
-  }
-
   public void setProperties(Properties properties) {
     this.properties = properties;
   }

@@ -121,11 +121,6 @@ public class MessageAnnotationBeanPostProcessor implements BeanPostProcessor, Me
   }
 
   @Override
-  public Object postProcessAfterInitialization(Object bean, String beanName) throws BeansException {
-    return bean;
-  }
-
-  @Override
   public void setMessageSource(MessageSource messageSource) {
     this.messageSource = messageSource;
   }

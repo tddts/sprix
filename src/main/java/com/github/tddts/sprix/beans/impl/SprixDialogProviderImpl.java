@@ -94,6 +94,8 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
   private void setDialogContent(Dialog<?> dialog, Node root, SprixDialog dialogAnnotation) {
     boolean expandable = dialogAnnotation.expandable();
     DialogPane dialogPane = dialog.getDialogPane();
+    dialogPane.setMaxHeight(Integer.MAX_VALUE);
+    dialogPane.setMaxWidth(Integer.MAX_VALUE);
 
     if (expandable)
       dialogPane.setExpandableContent(root);
