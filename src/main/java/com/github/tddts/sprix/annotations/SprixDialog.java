@@ -35,7 +35,7 @@ public @interface SprixDialog {
   /**
    * Path to FXML file.
    */
-  String value();
+  String value() default "";
 
   /**
    * Determines if loaded JavaFX nodes will be put under "expandable content" of dialog pane or not.

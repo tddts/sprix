@@ -26,6 +26,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.control.Dialog;
 import javafx.scene.control.DialogPane;
+import org.springframework.util.StringUtils;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -52,14 +53,41 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
       throw new SprixDialogException("Dialog class should have a @SprixDialog annotation!");
 
     SprixDialog dialogAnnotation = type.getDeclaredAnnotation(SprixDialog.class);
-    FXMLLoader loader = loadDialogView(dialogAnnotation);
-    T dialog = loader.getController();
-    setDialogContent(dialog, loader.getRoot(), dialogAnnotation);
-    beanHandler.initBean(dialog);
+
+    T dialog = buildDialog(dialogAnnotation, type);
 
     if (dialogAnnotation.cached())
       dialogCache.put(type, dialog);
 
+    return dialog;
+  }
+
+  private <T extends Dialog<?>> T buildDialog(SprixDialog dialogAnnotation, Class<T> type) {
+    T dialog;
+
+    if (StringUtils.hasText(dialogAnnotation.value())) {
+      dialog = loadDialogFromFXML(dialogAnnotation);
+    } else {
+      dialog = createDialogInstance(type);
+    }
+
+    return dialog;
+  }
+
+  private <T extends Dialog<?>> T createDialogInstance(Class<T> type) {
+    try {
+      return type.newInstance();
+    } catch (InstantiationException | IllegalAccessException e) {
+      throw new SprixDialogException(e.getMessage(), e);
+    }
+  }
+
+  private <T extends Dialog<?>> T loadDialogFromFXML(SprixDialog dialogAnnotation) {
+    T dialog;
+    FXMLLoader loader = loadDialogView(dialogAnnotation);
+    dialog = loader.getController();
+    setDialogContent(dialog, loader.getRoot(), dialogAnnotation);
+    beanHandler.initBean(dialog);
     return dialog;
   }
 
@@ -76,10 +104,6 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
   private FXMLLoader loadDialogView(SprixDialog dialogAnnotation) {
 
     String filePath = dialogAnnotation.value();
-
-    if (filePath.isEmpty())
-      throw new SprixDialogException("@SprixDialog should contain path to FXML file!");
-
     FXMLLoader loader = new FXMLLoader(ResourceUtil.getClasspathResourceURL(filePath), resourceBundleProvider.getResourceBundle());
 
     try {
