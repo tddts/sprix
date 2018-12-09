@@ -27,8 +27,17 @@ import javafx.stage.Stage;
  */
 public class SimpleSprixApplicationStarter extends AbstractSprixApplicationStarter {
 
+  public SimpleSprixApplicationStarter() {
+  }
+
   @Override
   public void setUp(Stage primaryStage) {
     primaryStage.setOnCloseRequest((e) -> System.exit(0));
   }
+
+  @Override
+  public void launchProxy(String[] args) {
+    launch(args);
+  }
+
 }

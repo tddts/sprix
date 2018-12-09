@@ -43,7 +43,7 @@ public abstract class AbstractSprixApplicationStarter extends Application implem
   @Override
   public synchronized void onApplicationEvent(ContextRefreshedEvent event) {
     if (!applicationStarted) {
-      launch(getArgs());
+      launchProxy(getArgs());
       applicationStarted = true;
     }
   }
@@ -69,10 +69,13 @@ public abstract class AbstractSprixApplicationStarter extends Application implem
     viewHandler.showView(primaryStage);
   }
 
+
   @Override
   public final void setBeanFactory(BeanFactory beanFactory) throws BeansException {
     AbstractSprixApplicationStarter.beanFactory = beanFactory;
   }
 
   public abstract void setUp(Stage primaryStage);
+
+  public abstract void launchProxy(String[] args);
 }

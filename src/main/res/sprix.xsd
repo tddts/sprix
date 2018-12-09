@@ -9,18 +9,14 @@
 
     <xsd:element name="view">
         <xsd:complexType>
-            <xsd:complexContent>
-                <xsd:extension base="beans:identifiedType">
-                    <xsd:attribute name="file" type="xsd:string" use="required"/>
-                    <xsd:attribute name="title" type="xsd:string"/>
-                    <xsd:attribute name="width" type="xsd:int"/>
-                    <xsd:attribute name="height" type="xsd:int"/>
+            <xsd:attribute name="file" type="xsd:string" use="required"/>
+            <xsd:attribute name="title" type="xsd:string"/>
+            <xsd:attribute name="width" type="xsd:int"/>
+            <xsd:attribute name="height" type="xsd:int"/>
 
-                    <xsd:attribute name="starter" type="xsd:string" use="required"/>
-                    <xsd:attribute name="messageSource" type="xsd:string"/>
-                    <xsd:attribute name="locale" type="xsd:string"/>
-                </xsd:extension>
-            </xsd:complexContent>
+            <xsd:attribute name="starterClass" type="xsd:string"/>
+            <xsd:attribute name="messageSource" type="xsd:string"/>
+            <xsd:attribute name="locale" type="xsd:string"/>
         </xsd:complexType>
     </xsd:element>
 
