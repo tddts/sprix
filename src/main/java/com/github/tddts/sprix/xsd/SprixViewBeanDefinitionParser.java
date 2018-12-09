@@ -83,10 +83,17 @@ public class SprixViewBeanDefinitionParser implements BeanDefinitionParser {
     BeanDefinitionRegistry registry = parserContext.getRegistry();
 
     registerBean(registry, source, SprixBeanHandlerImpl.class, SPRIX_BEAN_HANDLER_BEAN_NAME);
-    registerBean(registry, source, SprixDialogProviderImpl.class, SPRIX_DIALOG_PROVIDER_BEAN_NAME);
 
+    registerDialogProvider(element, registry, source);
     registerResourceBundleProvider(element, registry, source);
     registerAppStarter(element, registry, source);
+  }
+
+  private void registerDialogProvider(Element element, BeanDefinitionRegistry registry, Object source){
+    BeanDefinitionBuilder defBuilder = genericBeanDefinition(SprixDialogProviderImpl.class);
+    defBuilder.addPropertyReference(BEAN_HANDLER, SPRIX_BEAN_HANDLER_BEAN_NAME);
+    defBuilder.addPropertyReference(RESOURCE_BUNDLE_PROVIDER, RESOURCE_BUNDLE_PROVIDER_BEAN_NAME);
+    registerBeanDef(registry, source, defBuilder, SPRIX_DIALOG_PROVIDER_BEAN_NAME);
   }
 
   private void registerAppStarter(Element element, BeanDefinitionRegistry registry, Object source) {

@@ -75,6 +75,10 @@ public abstract class AbstractSprixApplicationStarter extends Application implem
     AbstractSprixApplicationStarter.beanFactory = beanFactory;
   }
 
+  protected static BeanFactory getBeanFactory() {
+    return beanFactory;
+  }
+
   public abstract void setUp(Stage primaryStage);
 
   public abstract void launchProxy(String[] args);
