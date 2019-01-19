@@ -35,7 +35,7 @@ public class SpringUtil {
    * @return pair containing of bean and it's class
    * @throws BeanInitializationException in case of any exception
    */
-  public static Pair<Class<?>, Object> checkForDinamicProxy(Object bean) throws BeanInitializationException {
+  public static Pair<Class<?>, Object> checkForDynamicProxy(Object bean) throws BeanInitializationException {
     try {
       Class<?> type = bean.getClass();
       if (AopUtils.isJdkDynamicProxy(bean)) {

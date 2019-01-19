@@ -52,7 +52,7 @@ public class MessageAnnotationBeanPostProcessor implements BeanPostProcessor, Me
   @Override
   public Object postProcessBeforeInitialization(Object bean, String beanName) throws BeansException {
 
-    Pair<Class<?>, Object> typeObjectPair = SpringUtil.checkForDinamicProxy(bean);
+    Pair<Class<?>, Object> typeObjectPair = SpringUtil.checkForDynamicProxy(bean);
     Class<?> type = typeObjectPair.getLeft();
     Object target = typeObjectPair.getRight();
 
