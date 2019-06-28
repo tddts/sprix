@@ -29,6 +29,7 @@ import javafx.scene.control.DialogPane;
 import org.springframework.util.StringUtils;
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -41,6 +42,7 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
   private ResourceBundleProvider resourceBundleProvider;
 
   @Override
+  @SuppressWarnings("unchecked")
   public <T extends Dialog<?>> T getDialog(Class<T> type) {
     Dialog<?> dialog = dialogCache.get(type);
     dialog = dialog == null ? createDialog(type) : dialog;
@@ -77,8 +79,8 @@ public class SprixDialogProviderImpl implements SprixDialogProvider {
 
   private <T extends Dialog<?>> T createDialogInstance(Class<T> type) {
     try {
-      return type.newInstance();
-    } catch (InstantiationException | IllegalAccessException e) {
+      return type.getDeclaredConstructor().newInstance();
+    } catch (InstantiationException | IllegalAccessException | NoSuchMethodException | InvocationTargetException e) {
       throw new SprixDialogException(e.getMessage(), e);
     }
   }
