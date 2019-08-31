@@ -17,7 +17,7 @@ XML configuration:
        http://www.github.com/tddts/sprix http://www.github.com/tddts/sprix/sprix.xsd">
        
   <sprix:view file="fxml/main.fxml"
-              starterClass="com.example.App"
+              starterClass="com.github.tddts.sprix.beans.impl.SimpleSprixApplicationStarter"
               messageSource="messageSource"
               width="1024"
               height="600"
