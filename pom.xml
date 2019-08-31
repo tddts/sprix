@@ -117,7 +117,13 @@
     <dependency>
       <groupId>com.github.tddts</groupId>
       <artifactId>tools</artifactId>
-      <version>1.8.3</version>
+      <version>2.0</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.tddts</groupId>
+      <artifactId>tools-fx</artifactId>
+      <version>8.0</version>
     </dependency>
 
     <dependency>
