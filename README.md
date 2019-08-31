@@ -37,6 +37,10 @@ public class SomeController {
   // Inject message from resource bundle
   @Message("some.message.property.name")
   private String someMessage;
+  
+  // Inject text file content
+  @LoadContent("/some_text.txt")
+  private String someText;
 
   // Autowire Spring beans
   @Autowired
