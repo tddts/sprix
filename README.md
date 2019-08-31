@@ -25,6 +25,7 @@ XML configuration:
 ```
 Annotation configuration
 ```java
+@Configuration
 @SprixConfig(file = "fxml/main.fxml", starterClass = "com.example.AnotherStarter", locale = "ru_RU")
 public class App {
   // ....
