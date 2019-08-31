@@ -29,28 +29,13 @@ import org.springframework.beans.factory.xml.ParserContext;
 import org.springframework.util.StringUtils;
 import org.w3c.dom.Element;
 
+import static com.github.tddts.sprix.util.SprixConst.*;
 import static org.springframework.beans.factory.support.BeanDefinitionBuilder.genericBeanDefinition;
 
 /**
  * @author Tigran Dadaiants dtkcommon@gmail.com
  */
 public class SprixViewBeanDefinitionParser implements BeanDefinitionParser {
-
-  private static final String FILE = "file";
-  private static final String TITLE = "title";
-  private static final String WIDTH = "width";
-  private static final String HEIGHT = "height";
-  private static final String LOCALE = "locale";
-  private static final String STARTER_CLASS = "starterClass";
-  private static final String BEAN_HANDLER = "beanHandler";
-  private static final String MESSAGE_SOURCE = "messageSource";
-  private static final String RESOURCE_BUNDLE_PROVIDER = "resourceBundleProvider";
-
-  private static final String SPRIX_VIEW_HANDLER_BEAN_NAME = "com.github.tddts.sprix.beans.internalSprixViewHandler";
-  private static final String SPRIX_APP_STARTER_BEAN_NAME = "com.github.tddts.sprix.beans.internalSprixApplicationStarter";
-  private static final String SPRIX_BEAN_HANDLER_BEAN_NAME = "com.github.tddts.sprix.beans.internalSprixBeanHandler";
-  private static final String SPRIX_DIALOG_PROVIDER_BEAN_NAME = "com.github.tddts.sprix.beans.internalSprixDialogProvider";
-  private static final String RESOURCE_BUNDLE_PROVIDER_BEAN_NAME = "com.github.tddts.sprix.beans.internalResourceBundleProvider";
 
   @Override
   public BeanDefinition parse(Element element, ParserContext parserContext) {
@@ -115,14 +100,16 @@ public class SprixViewBeanDefinitionParser implements BeanDefinitionParser {
   }
 
   private Class<?> getStarterClass(String name) throws ClassNotFoundException {
-    Class<?> starterClass = Class.forName(name);
-
-    if (!SprixApplicationStarter.class.isAssignableFrom(starterClass)) {
-      throw new BeanDefinitionStoreException("Given '" + STARTER_CLASS
-              + "' is not a subtype of " + SprixApplicationStarter.class.getCanonicalName());
+    try{
+      Class<?> starterClass = Class.forName(name);
+      if (!SprixApplicationStarter.class.isAssignableFrom(starterClass)) {
+        throw new BeanDefinitionStoreException("Given '" + STARTER_CLASS
+            + "' is not a subtype of " + SprixApplicationStarter.class.getCanonicalName());
+      }
+      return starterClass;
+    } catch (ClassNotFoundException e){
+      throw new BeanDefinitionStoreException("Starter Class not found!",e);
     }
-
-    return starterClass;
   }
 
   private void registerResourceBundleProvider(Element element, BeanDefinitionRegistry registry, Object source) {
