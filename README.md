@@ -58,6 +58,8 @@ public class SomeController {
   @PostConstruct
   private void init() {
   }
+// ...
+}
 ```
 
 ### Managing JavaFX dialogs.
@@ -96,10 +98,10 @@ public class CredentialsDialog extends Dialog<Pair<String, String>> {
 ```
 To use this dialog:
 ```java
-  @Autowired
-  private SprixDialogProvider dialogProvider;
+@Autowired
+private SprixDialogProvider dialogProvider;
 
-  private Optional<Pair<String, String>> getCredentials() {
-    return dialogProvider.getDialog(DevCredentialsDialog.class).showAndWait();
-  }  
+private Optional<Pair<String, String>> getCredentials() {
+  return dialogProvider.getDialog(DevCredentialsDialog.class).showAndWait();
+}  
 ```
