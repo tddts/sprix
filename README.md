@@ -23,7 +23,14 @@ XML configuration:
               height="600"
               title="Window title"/>
 ```
-Annotation configuration TBA.
+Annotation configuration
+```java
+@SprixConfig(file = "fxml/main.fxml", starterClass = "com.example.AnotherStarter", locale = "ru_RU")
+public class App {
+  // ....
+}
+```
+
 ### Working with JavaFX controllers.
 ```java
 // Controller is now a Spring bean.
