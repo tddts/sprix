@@ -77,6 +77,18 @@
     <dependencies>
 
         <dependency>
+            <groupId>com.github.tddts</groupId>
+            <artifactId>tools-fx</artifactId>
+            <version>11.0</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.github.tddts</groupId>
+            <artifactId>tools</artifactId>
+            <version>2.0</version>
+        </dependency>
+
+        <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-core</artifactId>
             <version>${spring.version}</version>
@@ -108,18 +120,6 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.5</version>
             <scope>compile</scope>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.tddts</groupId>
-            <artifactId>tools-fx</artifactId>
-            <version>11.0</version>
-        </dependency>
-
-        <dependency>
-            <groupId>com.github.tddts</groupId>
-            <artifactId>tools</artifactId>
-            <version>2.0</version>
         </dependency>
 
         <dependency>

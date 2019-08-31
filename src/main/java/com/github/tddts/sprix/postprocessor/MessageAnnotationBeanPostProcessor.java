@@ -90,7 +90,7 @@ public class MessageAnnotationBeanPostProcessor implements BeanPostProcessor, Me
     return false;
   }
 
-  private String preprocess(AccessibleObject accessibleObject) throws NoSuchMessageException {
+  private String preProcess(AccessibleObject accessibleObject) throws NoSuchMessageException {
     Message messageAnnotation = accessibleObject.getAnnotation(Message.class);
     String messageKey = messageAnnotation.value();
     String message = messageSource.getMessage(messageKey, EMPTY_ARGS, locale);
@@ -100,7 +100,7 @@ public class MessageAnnotationBeanPostProcessor implements BeanPostProcessor, Me
 
   private void processMethod(Object bean, Method method) {
     try {
-      String message = preprocess(method);
+      String message = preProcess(method);
       method.invoke(bean, message);
     } catch (IllegalAccessException | InvocationTargetException e) {
       throw new BeanInitializationException("Injection of message failed for method [" + bean.getClass() + "." + method.getName() + "]", e);
@@ -111,7 +111,7 @@ public class MessageAnnotationBeanPostProcessor implements BeanPostProcessor, Me
 
   private void processField(Object bean, Field field) {
     try {
-      String message = preprocess(field);
+      String message = preProcess(field);
       field.set(bean, message);
     } catch (IllegalAccessException e) {
       throw new BeanInitializationException("Injection of message failed for field [" + bean.getClass() + "." + field.getName() + "]", e);
